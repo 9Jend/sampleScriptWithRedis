@@ -1,0 +1,17 @@
+services:
+    app:
+        image: php:8.2-apache
+        restart: unless-stopped
+        build:
+          context: ./docker
+          dockerfile: ./dockerfile
+        ports:
+            - '${APP_PORT}:80'
+        volumes:
+            - '.:/var/www/html'
+    redis:
+        image: redis
+        restart: unless-stopped
+        ports:
+          - "${REDIS_PORT}:6379"
+  
